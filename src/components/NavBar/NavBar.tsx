@@ -11,6 +11,7 @@ export const NavBar = () => {
       <Navbar.Brand href='/'>Libraryz</Navbar.Brand> 
       <Nav className='ms-auto'>
         <Nav.Link href='/'>Home</Nav.Link>
+        <Nav.Link href='/books'>Books</Nav.Link>
         <Nav.Link href='/profile'>Profile</Nav.Link>
         <Nav.Link href='/login'>Login</Nav.Link>
       </Nav>

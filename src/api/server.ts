@@ -15,7 +15,7 @@ export const user_calls = {
             throw new Error('Failed to login')
         }
 
-        console.log(response.json())
+    
         return await response.json()
     }
 }

@@ -3,7 +3,7 @@ import {user_calls} from '../../api'
 import {useForm} from 'react-hook-form'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import Container from 'react-bootstrap/Container'
-import {login, tryEmail, tryPassword} from '../../redux/slices/userSlice'
+import {login, logout} from '../../redux/slices/userSlice'
 import { Input, Password } from '../SharedComponents'
 import { Button } from 'react-bootstrap'
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
@@ -27,24 +27,29 @@ interface LoginState {
     last_name: string
 }
 
+interface PostProps {
+  post: {}
+}
+
 export const LoginForm = (props: LoginProps, histProps: historyProps) => {
 
   const dispatch = useDispatch()
   const store = useStore()
-  const {history} = histProps
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const name = useSelector<LoginState>(state => state.id)
+
   const {register, handleSubmit} = useForm({})
+
+  const handleLogout = () => {
+    dispatch(logout())
+  }
 
   const onSubmit = (data:any, event:any) => {
     event.preventDefault()
 
-
-    dispatch(tryEmail(data.email))
-    dispatch(tryPassword(data.password))
-    user_calls.get(store.getState())
-    setTimeout( () => {<Redirect push to='/' />}, 2000)
+    
+    let post = user_calls.get({"email": data.email, "password": data.password}) 
+    dispatch(login(post))
+    console.log(store.getState())
+    event.target.reset()
 
   }
 
@@ -56,6 +61,7 @@ export const LoginForm = (props: LoginProps, histProps: historyProps) => {
             <Password {...register('password')} name="password" placeholder="Password"/>
             <Button type="submit" className='border'>Submit</Button>
         </form>
+        <Button onClick={handleLogout}>Logout</Button>
     </Container>
   )
 }

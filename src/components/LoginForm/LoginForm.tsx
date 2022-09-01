@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, forwardRef} from 'react'
 import {user_calls} from '../../api'
 import {useForm} from 'react-hook-form'
 import { useDispatch, useSelector, useStore } from 'react-redux'
@@ -27,9 +27,6 @@ interface LoginState {
     last_name: string
 }
 
-interface PostProps {
-  post: {}
-}
 
 export const LoginForm = (props: LoginProps, histProps: historyProps) => {
 
@@ -47,6 +44,7 @@ export const LoginForm = (props: LoginProps, histProps: historyProps) => {
 
     
     let post = user_calls.get({"email": data.email, "password": data.password}) 
+
     dispatch(login(post))
     console.log(store.getState())
     event.target.reset()
@@ -57,9 +55,9 @@ export const LoginForm = (props: LoginProps, histProps: historyProps) => {
     <Container className='border'>
         <h2>Login</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
-            <Input {...register('email')} name="email" placeholder='email'/>
-            <Password {...register('password')} name="password" placeholder="Password"/>
-            <Button type="submit" className='border'>Submit</Button>
+          <Input {...register('email')} name="email" placeholder='Email'/>
+          <Password {...register('password')} name="password" placeholder="Password"/>
+          <Button type="submit" className='border'>Submit</Button>
         </form>
         <Button onClick={handleLogout}>Logout</Button>
     </Container>

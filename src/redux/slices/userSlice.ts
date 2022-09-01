@@ -5,7 +5,7 @@ const initialStateValue = {
     first_name: '',
     last_name: '',
     password: '',
-    token: '',
+    user_token: '',
     logged_in: false
 }
 

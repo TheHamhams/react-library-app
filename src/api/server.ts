@@ -1,5 +1,6 @@
 const TEMP_TOKEN = '271a7ae691a30d23f737a69bd4be5597e116f77338e9e3be'
-const baseUrlHome = 'http://127.0.0.1:5000/api'
+const baseUrlHome = 'https://hamren-library-api.herokuapp.com/api'
+const baseUrlTest = 'http://127.0.0.1:5000/api'
 
 export const user_calls = {
     get: async (data: any={}) => {  

@@ -1,38 +1,39 @@
-import React, {useState, forwardRef} from 'react'
+// import React, {useState, forwardRef} from 'react'
+import React from 'react'
 import {user_calls} from '../../api'
 import {useForm} from 'react-hook-form'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+// import { useAuth, AuthCheck } from 'reactfire'
+import { useDispatch, useStore } from 'react-redux'
 import Container from 'react-bootstrap/Container'
 import {login, logout} from '../../redux/slices/userSlice'
 import { Input, Password } from '../SharedComponents'
 import { Button } from 'react-bootstrap'
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
+// import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom'
 
-interface historyProps {
-  history: RouteComponentProps['history']
-  location: RouteComponentProps['location']
-  match: RouteComponentProps['match']
-} 
+// interface historyProps {
+//   history: RouteComponentProps['history']
+//   location: RouteComponentProps['location']
+//   match: RouteComponentProps['match']
+// } 
 
 interface LoginProps {
     email?: string
     data?: {}
 }
 
-interface LoginState {
-    id: string
-    email: string
-    token: string
-    first_name: string
-    last_name: string
-}
+// interface LoginState {
+//     id: string
+//     email: string
+//     token: string
+//     first_name: string
+//     last_name: string
+// }
 
 
-export const LoginForm = (props: LoginProps, histProps: historyProps) => {
+export const LoginForm = (props: LoginProps) => {
 
   const dispatch = useDispatch()
   const store = useStore()
-
   const {register, handleSubmit} = useForm({})
 
   const handleLogout = () => {

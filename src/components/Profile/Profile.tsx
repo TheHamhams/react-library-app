@@ -1,29 +1,20 @@
-import React, {useState} from 'react'
-import { Container } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
-// import userSlice from '../../redux/slices/userSlice'
-
-interface UserState {
-  user: {
-    email: string
-    token: string
-  }
-}
-
-interface UserProps {
-  email: string
-  token: string
-}
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const Profile = () => {
-  const user = useSelector<UserState>((state) => state.user)
+  const { user } = useAuth0();
+
+  if (!user) {
+    return null
+  }
 
   return (
-    <Container>
-      <p>Email:</p>
-      <p>First Name</p>
-      <p>Last Name</p>
-      <p>Token</p>
-    </Container>
-  )
-}
+
+      <div>
+        <p>ID: {user.sub}</p>
+        <p>Email: {user.email}</p>
+        <p>Name: {user.name}</p>
+      </div>
+
+  );
+};

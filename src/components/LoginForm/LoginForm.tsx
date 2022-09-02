@@ -44,9 +44,9 @@ export const LoginForm = (props: LoginProps) => {
     event.preventDefault()
 
     
-    let post = user_calls.get({"email": data.email, "password": data.password}) 
+    // let post = user_calls.get({"email": data.email, "password": data.password}) 
 
-    dispatch(login(post))
+    // dispatch(login(post))
     console.log(store.getState())
     event.target.reset()
 

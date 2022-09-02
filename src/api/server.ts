@@ -4,22 +4,50 @@ const baseUrlTest = 'http://127.0.0.1:5000/api'
 const SECRET_KEY = 'CodingTemple'
 
 export const user_calls = {
-    get: async (data: any={}) => {  
-        const response = await fetch(`${baseUrlHome}/users`, {
-            method: 'POST',
+    // get: async (data: any={}) => {  
+    //     const response = await fetch(`${baseUrlHome}/users`, {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(data)
+    //     })
+
+    //     if (!response.ok) {
+    //         throw new Error('Failed to login')
+    //     }
+
+    
+    //     return await response.json()
+    // },
+    get: async (id: string) => {
+        const response = await fetch(`${baseUrlTest}/books/user/${id}`, {
+            method: 'GET',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data)
         })
 
         if (!response.ok) {
-            throw new Error('Failed to login')
+            throw new Error('failed to fetch user books from server')
         }
 
-    
         return await response.json()
-    }
+    },
+
+    update: async(data: {}) => {
+        const response = await fetch(`${baseUrlTest}/books/checkin`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-access-token': `Bearer ${SECRET_KEY}`
+            },
+            body: JSON.stringify(data)
+        })
+        console.log(SECRET_KEY)
+        return await response.json()
+    } 
+    
 }
 
 export const book_calls = {

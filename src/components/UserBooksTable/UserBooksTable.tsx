@@ -1,14 +1,15 @@
 import React, {useState} from 'react'
 import {DataGrid, GridColDef} from '@material-ui/data-grid'
-import {useGetBooksData, useGetUserBooksData} from '../../custom-hooks'
+import { useGetUserBooksData } from '../../custom-hooks'
 import {Button, Dialog,
     DialogActions,
     DialogContent,
     DialogContentText,
     DialogTitle} from '@material-ui/core'
-import { book_calls } from '../../api'
+import { book_calls, user_calls } from '../../api'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Container } from 'react-bootstrap'
+
 
 
 const columns: GridColDef[] = [
@@ -28,9 +29,8 @@ interface gridData {
     }
 }
 
-export const BooksTable = () => {
+export const UserBooksTable = () => {
   let { user, isAuthenticated } = useAuth0()
-  let {booksData, getData} = useGetBooksData()
   let {userBooksData, getUserBookData} = useGetUserBooksData()
   let [open, setOpen] = useState(false)
   const [selectionModel, setSelectionModel] = useState<any>([])
@@ -38,49 +38,44 @@ export const BooksTable = () => {
   let handleOpen = () => setOpen(true)
   let handleClose = () => setOpen(false)
 
-  let checkoutBook = () => {
+  let checkinBook = () => {
     if (!user) {
-        return null
+        return null 
     }
+
     let data = {
         'book_id': selectionModel[0],
         'user_id': user.sub
     }
-    book_calls.update(data)
-    getData()
+    user_calls.update(data)
+    getUserBookData()
     setTimeout( () => {window.location.reload()}, 1000)
-
-    
   }
 
   return (
-    <>
-    <Container style={{height: '35vh', width: '100%', marginBottom: '20px'}}>
-        <h2>Available Books</h2>
-        <DataGrid getRowId={(r) => r.book_id} rows={booksData} columns={columns} checkboxSelection={true} onSelectionModelChange={(item) => {
+    <Container style={{height: '35vh', width: '100%'}}>
+        <h2>Checked Out Books</h2>
+        <DataGrid getRowId={(r) => r.book_id} rows={userBooksData} columns={columns} checkboxSelection={true} onSelectionModelChange={(item) => {
             setSelectionModel(item)
         }}/>
 
-        {isAuthenticated && (
-            <>
-            <Button onClick={handleOpen}>Checkout Books</Button>
+
+            <Button onClick={handleOpen}>Checkin Book</Button>
 
             <Dialog open={open} onClose={handleClose} >
-            <DialogTitle>Checkout Book</DialogTitle>
+            <DialogTitle>Checkin Book</DialogTitle>
             <DialogContent>
                 <DialogContentText>Do you wish to check out the selected book?</DialogContentText>
-                <Button onClick={checkoutBook}>Confirm</Button>
+                <Button onClick={checkinBook}>Confirm</Button>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose}>Cancel</Button>
             </DialogActions>
 
             </Dialog>
-            </>
-        )}
+           
+      
 
     </Container>
-
-</>
   )
 }

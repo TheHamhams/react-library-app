@@ -11,13 +11,15 @@ export const Profile = () => {
   }
 
   return (
-    <>
-      <Container>
-        <p>ID: {user.sub}</p>
+    <div className="background">
+      
+      <Container className="text-center py-3 border background-white">
+        <h1 className="text-center">Profile</h1>        
+        <p >ID: {user.sub}</p>
         <p>Email: {user.email}</p>
         <p>Name: {user.name}</p>
       </Container>
       <UserBooksTable />
-    </>
+    </div>
   );
 };

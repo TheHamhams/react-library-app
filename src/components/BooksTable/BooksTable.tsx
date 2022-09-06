@@ -45,15 +45,15 @@ export const BooksTable = () => {
     book_calls.update(data)
     getData()
     setTimeout( () => {window.location.reload()}, 1000)
-
     
   }
 
   return (
     <>
     <div>
-    <Container style={{height: '35vh', width: '100%', marginBottom: '20px'}}>
-        <h2 style={{textAlign: 'center'}}>Available Books</h2>
+   
+    <Container className='background-white' style={{height: '40vh', width: '100%', paddingBottom: '8vh',paddingTop: '5vh'}}>
+        <h1 className='text-center'>Available Books</h1>
 
         <DataGrid getRowId={(r) => r.book_id} rows={booksData} columns={columns} checkboxSelection={true} onSelectionModelChange={(item) => {
             setSelectionModel(item)
@@ -61,16 +61,16 @@ export const BooksTable = () => {
 
         {isAuthenticated && (
             <>
-            <Button onClick={handleOpen}>Checkout Books</Button>
+            <Button variant='outlined' onClick={handleOpen}>Checkout Books</Button>
 
             <Dialog open={open} onClose={handleClose} >
             <DialogTitle>Checkout Book</DialogTitle>
             <DialogContent>
                 <DialogContentText>Do you wish to check out the selected book?</DialogContentText>
-                <Button onClick={checkoutBook}>Confirm</Button>
+                <Button variant='outlined' onClick={checkoutBook}>Confirm</Button>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
+                <Button variant='outlined' onClick={handleClose}>Cancel</Button>
             </DialogActions>
 
             </Dialog>
@@ -79,15 +79,10 @@ export const BooksTable = () => {
 
     </Container>
     </div>
-    {/* <br/>
-    <br/>
-    <br/> */}
 
-    <div>
-    <Image  className='d-block mx-auto' src={Spidey} fluid />
+    <div style={{marginTop: '8vh'}}>
+    <Image  className='d-block mx-auto' src={Spidey} fluid rounded />
     </div>
-    
-
 </>
   )
 }

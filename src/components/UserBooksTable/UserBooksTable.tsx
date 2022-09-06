@@ -48,29 +48,26 @@ export const UserBooksTable = () => {
   }
 
   return (
-    <Container style={{height: '35vh', width: '100%'}}>
-        <h2>Checked Out Books</h2>
+    <Container className='background-white' style={{height: '35vh', width: '100%', paddingBottom: '10vh', marginTop: '5vh'}}>
+        <h2 className='text-center'>Checked Out Books</h2>
         <DataGrid getRowId={(r) => r.book_id} rows={userBooksData} columns={columns} checkboxSelection={true} onSelectionModelChange={(item) => {
             setSelectionModel(item)
         }}/>
 
 
-            <Button onClick={handleOpen}>Checkin Book</Button>
+            <Button variant='outlined' onClick={handleOpen}>Checkin Book</Button>
 
             <Dialog open={open} onClose={handleClose} >
             <DialogTitle>Checkin Book</DialogTitle>
             <DialogContent>
                 <DialogContentText>Do you wish to check out the selected book?</DialogContentText>
-                <Button onClick={checkinBook}>Confirm</Button>
+                <Button variant='outlined' onClick={checkinBook}>Confirm</Button>
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleClose}>Cancel</Button>
+                <Button variant='outlined' onClick={handleClose}>Cancel</Button>
             </DialogActions>
 
             </Dialog>
-           
-      
-
     </Container>
   )
 }

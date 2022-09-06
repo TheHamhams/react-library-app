@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {DataGrid, GridColDef} from '@material-ui/data-grid'
-import {useGetBooksData, useGetUserBooksData} from '../../custom-hooks'
+import {useGetBooksData} from '../../custom-hooks'
 import {Button, Dialog,
     DialogActions,
     DialogContent,
@@ -9,6 +9,8 @@ import {Button, Dialog,
 import { book_calls } from '../../api'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Container } from 'react-bootstrap'
+import Image from 'react-bootstrap/Image'
+import Spidey from '../../assets/images/spidey.jpg'
 
 
 const columns: GridColDef[] = [
@@ -22,16 +24,10 @@ const columns: GridColDef[] = [
     { field: 'in_stock', headerName: 'Available', flex:1 }
 ]
 
-interface gridData {
-    data: {
-        book_id?:string
-    }
-}
 
 export const BooksTable = () => {
   let { user, isAuthenticated } = useAuth0()
   let {booksData, getData} = useGetBooksData()
-  let {userBooksData, getUserBookData} = useGetUserBooksData()
   let [open, setOpen] = useState(false)
   const [selectionModel, setSelectionModel] = useState<any>([])
 
@@ -55,8 +51,10 @@ export const BooksTable = () => {
 
   return (
     <>
+    <div>
     <Container style={{height: '35vh', width: '100%', marginBottom: '20px'}}>
-        <h2>Available Books</h2>
+        <h2 style={{textAlign: 'center'}}>Available Books</h2>
+
         <DataGrid getRowId={(r) => r.book_id} rows={booksData} columns={columns} checkboxSelection={true} onSelectionModelChange={(item) => {
             setSelectionModel(item)
         }}/>
@@ -80,6 +78,15 @@ export const BooksTable = () => {
         )}
 
     </Container>
+    </div>
+    {/* <br/>
+    <br/>
+    <br/> */}
+
+    <div>
+    <Image  className='d-block mx-auto' src={Spidey} fluid />
+    </div>
+    
 
 </>
   )

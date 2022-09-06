@@ -1,6 +1,6 @@
 import React, {forwardRef} from 'react'
-import { TextField, Switch, FormControlLabel } from '@material-ui/core'
-import { editableInputTypes } from '@testing-library/user-event/dist/utils'
+import { TextField } from '@material-ui/core'
+
 
 interface inputType{
     name: string,

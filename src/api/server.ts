@@ -1,27 +1,11 @@
-// const TEMP_TOKEN = '271a7ae691a30d23f737a69bd4be5597e116f77338e9e3be'
 const baseUrlHome = 'https://hamren-library-api.herokuapp.com/api'
-const baseUrlTest = 'http://127.0.0.1:5000/api'
+// const baseUrlTest = 'http://127.0.0.1:5000/api'
 const SECRET_KEY = 'CodingTemple'
 
 export const user_calls = {
-    // get: async (data: any={}) => {  
-    //     const response = await fetch(`${baseUrlHome}/users`, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify(data)
-    //     })
 
-    //     if (!response.ok) {
-    //         throw new Error('Failed to login')
-    //     }
-
-    
-    //     return await response.json()
-    // },
     get: async (id: string) => {
-        const response = await fetch(`${baseUrlTest}/books/user/${id}`, {
+        const response = await fetch(`${baseUrlHome}/books/user/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +20,7 @@ export const user_calls = {
     },
 
     update: async(data: {}) => {
-        const response = await fetch(`${baseUrlTest}/books/checkin`, {
+        const response = await fetch(`${baseUrlHome}/books/checkin`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +36,7 @@ export const user_calls = {
 
 export const book_calls = {
     get: async () => {
-        const response = await fetch(`${baseUrlTest}/books`, {
+        const response = await fetch(`${baseUrlHome}/books`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -67,7 +51,7 @@ export const book_calls = {
     },
 
     update: async(data: {}) => {
-        const response = await fetch(`${baseUrlTest}/books/checkout`, {
+        const response = await fetch(`${baseUrlHome}/books/checkout`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,7 +59,7 @@ export const book_calls = {
             },
             body: JSON.stringify(data)
         })
-        console.log(SECRET_KEY)
+
         return await response.json()
     } 
 }

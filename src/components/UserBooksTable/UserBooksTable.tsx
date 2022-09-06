@@ -6,7 +6,7 @@ import {Button, Dialog,
     DialogContent,
     DialogContentText,
     DialogTitle} from '@material-ui/core'
-import { book_calls, user_calls } from '../../api'
+import {  user_calls } from '../../api'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Container } from 'react-bootstrap'
 
@@ -23,14 +23,9 @@ const columns: GridColDef[] = [
     { field: 'in_stock', headerName: 'Available', flex:1 }
 ]
 
-interface gridData {
-    data: {
-        book_id?:string
-    }
-}
 
 export const UserBooksTable = () => {
-  let { user, isAuthenticated } = useAuth0()
+  let { user } = useAuth0()
   let {userBooksData, getUserBookData} = useGetUserBooksData()
   let [open, setOpen] = useState(false)
   const [selectionModel, setSelectionModel] = useState<any>([])

@@ -1,17 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import { Provider, useSelector } from 'react-redux';
+import { Provider } from 'react-redux';
 // import './index.css';
 import {store} from './redux/store'
-// import {FirebaseAppProvider, AuthCheck} from 'reactfire'
+
 import {Home, NavBar, Profile} from './components'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Books } from './components/Books';
-import { AppState, Auth0Provider } from '@auth0/auth0-react'
 import {Auth0ProviderWithHistory} from './auth0-procider-with-history'
-
-let DOMAIN = process.env.REACT_APP_AUTH0_DOMAIN
 
 
 ReactDOM.render(

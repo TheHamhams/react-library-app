@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import { Provider } from 'react-redux';
 import './index.css';
 import {store} from './redux/store'
-
+import { firebaseConfig } from './firebaseConfig';
 import {Home, NavBar, Profile} from './components'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Books } from './components/Books';
